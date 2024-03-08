@@ -19,4 +19,5 @@ COPY .vimrc /root/.vimrc
 
 COPY srcs/ /srv/ft_transcendence_backend/www/
 
-ENTRYPOINT [ "/bin/tail", "-f" ]
+#ENTRYPOINT [ "/bin/tail", "-f" ]
+ENTRYPOINT [ "/srv/ft_transcendence_backend/www/srcs/locallibrary/server.sh" ]

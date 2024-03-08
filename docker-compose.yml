@@ -3,15 +3,28 @@ version: '3.0'
 services:
     django:
         build: ./requirements/django
-        container_name: django_test
+        container_name: django
         restart: on-failure
-        ports:
-            - '8000:8000'
+        expose:
+            - '8000'
+        #ports:
+        #    - '8000:8000'
         volumes:
             - /Users/eralonso/Documents/github/learningDjango/requirements/django:/srv/ft_transcendence_backend/www
+        networks:
+            - eralonso
     nginx:
         build: ./requirements/nginx
+        container_name: nginx
+        restart: on-failure
+        ports:
+            - '1010:1010'
+        networks:
+            - eralonso
     #TODO: Add postgreSQL
     #postgres_db:
     #   image: 
 
+networks:
+    eralonso:
+        driver: bridge
