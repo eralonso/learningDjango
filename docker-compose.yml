@@ -1,0 +1,17 @@
+version: '3.0'
+
+services:
+    django:
+        build: ./requirements/django
+        container_name: django_test
+        restart: on-failure
+        ports:
+            - '8000:8000'
+        volumes:
+            - /Users/eralonso/Documents/github/learningDjango/requirements/django:/srv/ft_transcendence_backend/www
+    nginx:
+        build: ./requirements/nginx
+    #TODO: Add postgreSQL
+    #postgres_db:
+    #   image: 
+
