@@ -7,10 +7,8 @@ services:
         restart: on-failure
         expose:
             - '8000'
-        #ports:
-        #    - '8000:8000'
-        volumes:
-            - /Users/eralonso/Documents/github/learningDjango/requirements/django:/srv/ft_transcendence_backend/www
+        #volumes:
+        #    - /Users/eralonso/Documents/github/learningDjango/requirements/django:/srv/ft_transcendence_backend/www
         networks:
             - eralonso
     nginx:
@@ -18,7 +16,7 @@ services:
         container_name: nginx
         restart: on-failure
         ports:
-            - '1010:1010'
+            - '443:443'
         networks:
             - eralonso
     #TODO: Add postgreSQL
@@ -27,4 +25,5 @@ services:
 
 networks:
     eralonso:
+        name: eralonso
         driver: bridge

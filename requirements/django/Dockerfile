@@ -15,9 +15,9 @@ COPY requirements.txt /srv/ft_transcendence_backend/www/
 
 RUN pip install -r requirements.txt
 
-COPY .vimrc /root/.vimrc
+COPY src /srv/ft_transcendence_backend/www/src
 
-COPY srcs/ /srv/ft_transcendence_backend/www/
+RUN chmod +x /srv/ft_transcendence_backend/www/src/server.sh
 
 #ENTRYPOINT [ "/bin/tail", "-f" ]
-ENTRYPOINT [ "/srv/ft_transcendence_backend/www/srcs/locallibrary/server.sh" ]
+ENTRYPOINT [ "/srv/ft_transcendence_backend/www/src/server.sh" ]

@@ -2,7 +2,8 @@ FROM nginx:1.25-alpine
 
 RUN apk update \
 		&& apk add \
-			openssl
+			openssl \
+			bash
 
 RUN  openssl req -x509 -nodes -newkey rsa:4096 -days 365 \
 		-keyout /etc/ssl/private/nginx.key \
