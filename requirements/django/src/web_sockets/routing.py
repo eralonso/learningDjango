@@ -6,12 +6,13 @@
 #    By: eralonso <eralonso@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/14 18:02:54 by eralonso          #+#    #+#              #
-#    Updated: 2024/03/14 18:32:22 by eralonso         ###   ########.fr        #
+#    Updated: 2024/03/17 17:37:26 by eralonso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-from django.conf.url import url
+from django.urls import path
+from web_sockets.consumers import ExampleConsumer
 
 urlpatterns = [
-        url("ws://localhost:8000", ),
+    path("ws/exampleWS", ExampleConsumer.as_asgi()),
 ]
