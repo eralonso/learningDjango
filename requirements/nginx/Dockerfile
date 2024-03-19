@@ -3,7 +3,8 @@ FROM nginx:1.25-alpine
 RUN apk update \
 		&& apk add \
 			openssl \
-			bash
+			bash \
+			npm
 
 RUN  openssl req -x509 -nodes -newkey rsa:4096 -days 365 \
 		-keyout /etc/ssl/private/nginx.key \
@@ -13,5 +14,7 @@ RUN  openssl req -x509 -nodes -newkey rsa:4096 -days 365 \
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 COPY nginx.conf /etc/nginx/default.html
+
+COPY www /var/www/html
 
 ENTRYPOINT [ "nginx", "-g", "daemon off;" ]

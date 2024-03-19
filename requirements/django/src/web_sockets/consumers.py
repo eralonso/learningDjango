@@ -19,6 +19,7 @@ class ExampleConsumer(WebsocketConsumer):
 
 	def connect(self):
 		self.accept()
+		print("accepted connection")
 		self.user = self.scope["user"]
 		self.connections.append(self)
 		self.update_indicator(msg="Connected")

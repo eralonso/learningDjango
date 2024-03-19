@@ -7,8 +7,8 @@ services:
         restart: on-failure
         expose:
             - '8000'
-        #volumes:
-        #    - /Users/eralonso/Documents/github/learningDjango/requirements/django:/srv/ft_transcendence_backend/www
+        volumes:
+            - /Users/eralonso/Documents/github/learningDjango/requirements/django/src:/srv/ft_transcendence_backend/www/src
         networks:
             - eralonso
     nginx:
