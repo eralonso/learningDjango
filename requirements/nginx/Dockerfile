@@ -15,6 +15,6 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 COPY nginx.conf /etc/nginx/default.html
 
-COPY www /var/www/html
+#COPY html /var/www/html
 
 ENTRYPOINT [ "nginx", "-g", "daemon off;" ]

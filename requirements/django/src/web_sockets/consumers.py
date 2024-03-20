@@ -11,34 +11,30 @@
 # **************************************************************************** #
 
 import json
-from channels.generic.websocket import WebsocketConsumer
+from channels.generic.websocket import AsyncJsonWebsocketConsumer
 
-class ExampleConsumer(WebsocketConsumer):
+class ExampleConsumer(AsyncJsonWebsocketConsumer):
 
 	connections = []
 
-	def connect(self):
-		self.accept()
+	async def connect(self):
+		await self.accept()
 		print("accepted connection")
 		self.user = self.scope["user"]
 		self.connections.append(self)
-		self.update_indicator(msg="Connected")
+		await self.update_indicator(msg="Connected")
 
-	def disconnect(self, code):
+	async def disconnect(self, code):
 		self.update_indicator(msg="Disconnected")
 		self.connections.remove(self)
-		return super().disconnect(code)
+		return await super().disconnect(code)
 
-	def update_indicator(self, msg):
+	async def update_indicator(self, msg):
 		for connection in self.connections:
-			connection.send(
-				text_data=json.dumps(
-					{
+			await connection.send_json({
 						"msg": f"{self.user} {msg}",
 						"online": f"{len(self.connections)}",
 						"users": [f"{user.scope['user']}" for user in self.connections],
-					}
-				)
-			)
+			    })
 
 

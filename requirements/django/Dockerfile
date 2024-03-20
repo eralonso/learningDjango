@@ -1,11 +1,13 @@
-FROM python:3
+FROM python:3.12-alpine
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-RUN apt-get update -y \
-		&& apt-get upgrade -y \
-		&& apt-get install -y \
+RUN apk update \
+		&& apk add --no-cache \
+			gcc \
+			musl-dev \
+			postgresql-dev \
 			vim \
 			bash \
 			npm
@@ -21,7 +23,7 @@ COPY src/server.sh /srv/ft_transcendence_backend/www/server.sh
 
 RUN chmod +x /srv/ft_transcendence_backend/www/server.sh
 
-RUN npm i ws
+#RUN npm i ws
 
 #ENTRYPOINT [ "/bin/tail", "-f" ]
 ENTRYPOINT [ "/srv/ft_transcendence_backend/www/server.sh" ]
