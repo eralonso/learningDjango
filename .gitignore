@@ -1,3 +1,7 @@
 .*.sw*
 *.pyc
 .DS_Store
+.env
+postgres_db
+node_modules
+package*.json

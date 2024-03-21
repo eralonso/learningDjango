@@ -9,8 +9,14 @@ services:
             - '8000'
         volumes:
             - ./requirements/django/src:/srv/ft_transcendence_backend/www/src
+        environment:
+            - POSTGRES_DB
+            - POSTGRES_USER
+            - POSTGRES_PASSWORD
         networks:
             - eralonso
+        depends_on:
+            - postgres_db
     nginx:
         build: ./requirements/nginx
         container_name: nginx
@@ -30,7 +36,9 @@ services:
         volumes:
             - ./postgres_db:/var/lib/postgresql/data
         environment:
-
+            - POSTGRES_DB
+            - POSTGRES_USER
+            - POSTGRES_PASSWORD
         networks:
             - eralonso
 
